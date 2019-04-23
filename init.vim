@@ -1,6 +1,45 @@
 """ Optixal's Neovim Init.vim
 
 """ Vim-Plug
+"dein Scripts-----------------------------
+if &compatible
+  set nocompatible               " Be iMproved
+endif
+
+" Required:
+set runtimepath+=/home/caleb/.random/repos/github.com/Shougo/dein.vim
+
+" Required:
+if dein#load_state('/home/caleb/.random')
+  call dein#begin('/home/caleb/.random')
+
+  " Let dein manage dein
+  " Required:
+  call dein#add('/home/caleb/.random/repos/github.com/Shougo/dein.vim')
+
+  " Add or remove your plugins here like this:
+  "call dein#add('Shougo/neosnippet.vim')
+  "call dein#add('Shougo/neosnippet-snippets')
+
+  " Required:
+  call dein#end()
+  call dein#save_state()
+endif
+
+" Required:
+filetype plugin indent on
+syntax enable
+
+" If you want to install not installed plugins on startup.
+if dein#check_install()
+  call dein#install()
+endif
+call dein#add('Shougo/deoplete.nvim')
+"call deoplete#enable()
+
+autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr>
+autocmd CompleteDone * pclose " To close preview window of deoplete automagically
+
 call plug#begin()
 
 " Aesthetics - Main
